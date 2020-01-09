@@ -63,3 +63,17 @@ docker-composeに環境変数を追加
 ```
 bin/cake bake migration_snapshot Initial
 ```
+
+# model controller template 雛形生成
+全て生成するなら
+
+```
+bin/cake bake all suppliers
+```
+
+個別で作成するなら
+```
+bin/cake bake model suppliers
+bin/cake bake controller suppliers
+bin/cake bake template suppliers
+```
