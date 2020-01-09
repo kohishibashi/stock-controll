@@ -55,3 +55,11 @@ docker-composeに環境変数を追加
 # 初期DB tabel作りたかったら
 `stock-controll/Docker/mysql/sqls/initialize.sql`
 変更して作成してください。
+
+## migration snapshot
+初期テーブル作成後、snapshot作成したい場合
+（migration file欲しいとき）
+
+```
+bin/cake bake migration_snapshot Initial
+```
