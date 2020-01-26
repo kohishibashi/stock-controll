@@ -46,11 +46,30 @@ composer require --dev phpunit/phpunit "^5.7|^6.0"
 ```
 
 docker-composeに環境変数を追加
+stock-controll-db/test_myappのあたりを編集すること
 
 ```
-- DATABASE_TEST_URL=mysql://root:secret@php-book-app-db/test
+- DATABASE_TEST_URL=mysql://root:secret@stock-controll-db/test_myapp
 ```
 
+# PHPunit準備
+
+テストのDB作成
+
+```
+create database test_myapp;;
+```
+
+必要に応じて`password, username`を作成
+```
+
+```
+
+テスト全て実行
+
+```
+vendor/bin/phpunit
+```
 
 # 初期DB tabel作りたかったら
 `stock-controll/Docker/mysql/sqls/initialize.sql`

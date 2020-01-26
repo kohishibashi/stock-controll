@@ -1,0 +1,26 @@
+/.idea
+/.php_cs.cache
+/composer.lock
+/src/autoload.php
+/tools
+
+/build
+
+# CakePHP specific files #
+##########################
+/config/app.php
+/config/.env
+/logs/*
+/tmp/*
+/vendor/*
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
