@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\ItemsController;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
@@ -28,7 +29,8 @@ class ItemsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/items');
+        $this->assertResponseOk();
     }
 
     /**
@@ -38,7 +40,8 @@ class ItemsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/items/view/1');
+        $this->assertResponseOk();
     }
 
     /**
@@ -48,7 +51,24 @@ class ItemsControllerTest extends IntegrationTestCase
      */
     public function testAdd()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $data = [
+            'id' => 2,
+            'supplier_id' => 1,
+            'user_id' => 1,
+            'price' => 1,
+            'purchase_price' => 1,
+            'stock' => 1,
+            'name' => 'test note'
+        ];
+        $this->cookie("csrfToken", "test-token");
+        $this->_request['headers'] = ['X-CSRF-Token' => 'test-token'];
+        $this->post('/items/add', $data);
+
+        $this->assertResponseSuccess();
+
+        $items = TableRegistry::get('Items');
+        $query = $items->find()->where(['name' => $data['name']]);
+        $this->assertEquals(1, $query->count());
     }
 
     /**

@@ -4,50 +4,46 @@
  * @var \App\Model\Entity\Item[]|\Cake\Collection\CollectionInterface $items
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Item'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Suppliers'), ['controller' => 'Suppliers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Supplier'), ['controller' => 'Suppliers', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="items index large-9 medium-8 columns content">
-    <h3><?= __('Items') ?></h3>
+    <h3><?= __('商品名') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('supplier_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('price') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('purchase_price') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('stock') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id', 'ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name', '商品名') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('supplier_id', '業者') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id', 'ユーザー') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('price', '価格') ?></th>
+                <th scope="csol"><?= $this->Paginator->sort('purchase_price', '仕入れ値') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('stock', '在庫') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified', '変更日') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($items as $item): ?>
+            <? foreach ($items as $item): ?>
             <tr>
                 <td><?= $this->Number->format($item->id) ?></td>
-                <td><?= $item->has('supplier') ? $this->Html->link($item->supplier->id, ['controller' => 'Suppliers', 'action' => 'view', $item->supplier->id]) : '' ?></td>
-                <td><?= $item->has('user') ? $this->Html->link($item->user->id, ['controller' => 'Users', 'action' => 'view', $item->user->id]) : '' ?></td>
+                <td><?= h($item->name) ?></td>
+                <td><?= $item->has('supplier') ? $this->Html->link(
+                    $item->supplier->companyname, ['controller' => 'Suppliers', 'action' => 'view', $item->supplier->id]) : '' 
+                    ?>
+                </td>
+                <td><?= $item->has('user') ? $this->Html->link(
+                    $item->user->username,
+                    ['controller' => 'Users', 'acstion' => 'view', $item->user->id]) : '' 
+                    ?>
+                </td>
                 <td><?= $this->Number->format($item->price) ?></td>
                 <td><?= $this->Number->format($item->purchase_price) ?></td>
                 <td><?= $this->Number->format($item->stock) ?></td>
-                <td><?= h($item->created) ?></td>
                 <td><?= h($item->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $item->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $item->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $item->id], ['confirm' => __('Are you sure you want to delete # {0}?', $item->id)]) ?>
                 </td>
             </tr>
-            <?php endforeach; ?>
+            <? endforeach; ?>
         </tbody>
     </table>
     <div class="paginator">

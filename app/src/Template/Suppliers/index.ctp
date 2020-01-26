@@ -4,35 +4,31 @@
  * @var \App\Model\Entity\Supplier[]|\Cake\Collection\CollectionInterface $suppliers
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Supplier'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Items'), ['controller' => 'Items', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Item'), ['controller' => 'Items', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="suppliers index large-9 medium-8 columns content">
     <h3><?= __('Suppliers') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('companyname') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('companyphone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('companymail') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('companyurl') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('companyname', '会社名') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('companyphone', '電話') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('companymail', '業者メール') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('companyurl', '業者URL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created', '作成日') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified', '更新日') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($suppliers as $supplier): ?>
             <tr>
-                <td><?= $this->Number->format($supplier->id) ?></td>
                 <td><?= h($supplier->companyname) ?></td>
-                <td><?= $this->Number->format($supplier->companyphone) ?></td>
+                <td>
+                    <?php if ($supplier->companyphone === null): ?>
+                        <?= '登録無し' ?></td>
+                    <?php else: ?>
+                        <?= $this->Number->format($supplier->companyphone) ?>
+                    <?php endif; ?>
+                </td>
                 <td><?= h($supplier->companymail) ?></td>
                 <td><?= h($supplier->companyurl) ?></td>
                 <td><?= h($supplier->created) ?></td>

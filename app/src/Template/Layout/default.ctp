@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = '在庫管理アプリ';
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,13 +42,16 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li><a target="_blank" href="#">変更履歴</a></li>
+                <li><a target="_blank" href="#">業者情報</a></li>
+                <li><?= $this->Html->link(__('ユーザー'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+                <li><a target="_blank" href="#">ログアウト</a></li>
             </ul>
         </div>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
+        <?= $this->element('sidebar') ?>
         <?= $this->fetch('content') ?>
     </div>
     <footer>

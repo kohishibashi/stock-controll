@@ -39,6 +39,7 @@ class Item extends Entity
         'created' => true,
         'modified' => true,
         'supplier' => true,
-        'user' => true
+        'user' => true,
+        'name' => true
     ];
 }

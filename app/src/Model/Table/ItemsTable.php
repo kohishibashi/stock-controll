@@ -44,11 +44,11 @@ class ItemsTable extends Table
 
         $this->belongsTo('Suppliers', [
             'foreignKey' => 'supplier_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
     }
 
@@ -76,6 +76,12 @@ class ItemsTable extends Table
             ->integer('stock')
             ->requirePresence('stock', 'create')
             ->notEmpty('stock');
+
+        $validator
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         return $validator;
     }

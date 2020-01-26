@@ -16,7 +16,7 @@ class ItemsTableTest extends TestCase
      *
      * @var \App\Model\Table\ItemsTable
      */
-    public $Items;
+    public $ItemsTable;
 
     /**
      * Fixtures
@@ -38,7 +38,7 @@ class ItemsTableTest extends TestCase
     {
         parent::setUp();
         $config = TableRegistry::getTableLocator()->exists('Items') ? [] : ['className' => ItemsTable::class];
-        $this->Items = TableRegistry::getTableLocator()->get('Items', $config);
+        $this->ItemsTable = TableRegistry::getTableLocator()->get('Items', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class ItemsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Items);
+        unset($this->ItemsTable);
 
         parent::tearDown();
     }

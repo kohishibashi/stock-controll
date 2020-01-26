@@ -20,7 +20,12 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        // $users = $this->Users->find('all');
+        // $users = $this->Users->find('all',[
+        //     'conditions' => ['id' => 3], //検索条件。カラムと値を連想配列で指定。
+        //     'limit' => 2, //limit句。数値で渡す。
+        // ]);
+        $users = $this->paginate($this->Users->find()->select(['id', 'username', 'usermail', 'role']));
 
         $this->set(compact('users'));
     }

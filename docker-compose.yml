@@ -14,7 +14,7 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASS=secret
       - DATABASE_NAME=stock_app
-      - DATABASE_TEST_URL=mysql://root:secret@php-book-app-db/test
+      - DATABASE_TEST_URL=mysql://root:secret@stock-controll-db/test_myapp
     command: bash -c "sh docker-init-setup.sh && apache2-foreground"
     ports:
       - "5000:80"
